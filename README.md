@@ -1,6 +1,8 @@
 # BorderLayoutNetbeans
 netbeans
-![image](https://user-images.githubusercontent.com/82050305/197350260-2ea2d310-1cd0-499b-bb6f-a830b3ba5911.png)
+![image](https://user-images.githubusercontent.com/82050305/197350337-024fe4d3-b7c0-4590-a65f-6d42d1f5c6a6.png)
+
+
 Klasa Gui
 ```java
 package pkg4k_checkboxradioboxborderlayout_20102021;
