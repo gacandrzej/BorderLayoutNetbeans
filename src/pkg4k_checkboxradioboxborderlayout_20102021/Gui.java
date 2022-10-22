@@ -20,13 +20,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 
 
 public class Gui extends JFrame implements ItemListener,ActionListener{
+    
  String owoce[]={"jabłko","gruszka","kiwi","ananas"};
  JComboBox lista = null;
  JRadioButton radio = null;
- JCheckBox m=null;
+ JCheckBox jCheckBox=null;
+ JToggleButton jToggleButton = null;
  JTextArea area=null;
  JPanel jPanelEast =null;
  JPanel jPanelWest =null;
@@ -34,14 +37,14 @@ public class Gui extends JFrame implements ItemListener,ActionListener{
  JPanel jPanelSouth =null;
  JPanel jPanelCenter =null;
     public Gui() throws HeadlessException {
+        setTitle("-----------BorderLayout------");
+        setSize(new Dimension(800, 500));
+        
         jPanelEast = new JPanel();
         jPanelWest = new JPanel();
         jPanelSouth = new JPanel();
         jPanelNorth = new JPanel();
         jPanelCenter = new JPanel();
-       
-        setTitle("-----------BorderLayout------");
-        setSize(new Dimension(500, 500));
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
         c.setBackground(Color.CYAN);
@@ -50,12 +53,14 @@ public class Gui extends JFrame implements ItemListener,ActionListener{
         radio = new JRadioButton("zaznacz, jeśli idziesz do kina");
         radio.setMnemonic(KeyEvent.VK_P);
         radio.setActionCommand("start");
+        jToggleButton = new JToggleButton("OFF");
+        
         area.setBackground(Color.LIGHT_GRAY);
-        area.setFont(new Font("Arial", Font.BOLD, 30));
+        area.setFont(new Font("Arial", Font.BOLD, 10));
         lista = new JComboBox(owoce);
-         m = new JCheckBox("jesteś zapalonym graczem");
-        m.setMnemonic(KeyEvent.VK_C); // lewy Alt+C
-        m.setSelected(true);
+         jCheckBox = new JCheckBox("jesteś zapalonym graczem");
+        jCheckBox.setMnemonic(KeyEvent.VK_C); // lewy Alt+C
+        jCheckBox.setSelected(true);
         //c.add(area,BorderLayout.CENTER);
         // 
         jPanelEast.setBackground(Color.YELLOW);
@@ -72,20 +77,50 @@ public class Gui extends JFrame implements ItemListener,ActionListener{
         jPanelEast.add(lista);
         jPanelCenter.add(area);
         jPanelWest.add(radio);
-        jPanelSouth.add(m);
-        radio.addActionListener(this);
-         m.addItemListener(this);
+        jPanelSouth.add(jCheckBox);
+        jPanelNorth.add(jToggleButton);
+        
+        jToggleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jToggleButton.isSelected()==true){
+                    area.setText("");
+                    jToggleButton.setText("ON");
+                }
+                else {
+                    area.setBackground(Color.ORANGE);
+                     jToggleButton.setText("OFF");
+                }
+            }
+        });
+        
+        radio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (radio.isSelected() == true) {
+                    area.append("radio zaznaczone \n");
+                    System.out.println("tak \n");
+                } else {
+                    area.append("radio nie \n");
+                }
+               
+            }
+        });
+        
+         jCheckBox.addItemListener(this);
+         
         lista.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               
             area.append(lista.getSelectedItem()+" "
                        +lista.getSelectedIndex()+"\n");
             }
         });
+        
         setVisible(true);
         setDefaultCloseOperation(3);
-    }
+    } // koniec konstruktora
 
     @Override
     public void itemStateChanged(ItemEvent e) {
@@ -95,13 +130,11 @@ public class Gui extends JFrame implements ItemListener,ActionListener{
         } else {
            area.append("nie \n");
         }
-// throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-}
+} // koniec klasy Gui
