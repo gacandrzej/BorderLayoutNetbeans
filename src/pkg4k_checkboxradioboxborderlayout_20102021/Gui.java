@@ -1,6 +1,6 @@
 package pkg4k_checkboxradioboxborderlayout_20102021;
 /**
- *
+ * last 
  * @author Andrzej Gac <andrzej.gac@zsmeie.torun.pl>
  */
 import java.awt.BorderLayout;
@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
-
 
 public class Gui extends JFrame implements ItemListener,ActionListener{
     
